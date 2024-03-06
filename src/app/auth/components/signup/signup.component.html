@@ -1,0 +1,95 @@
+<div class="inner-content">
+  <nz-spin [nzSpinning]="false" nzSimple> </nz-spin>
+
+  <div class="parent">
+    <div class="child">
+      <div nz-row class="imDiv" nzJustify="center">
+        <div nz-col nzSpan="12" class="imDiv">
+          <h1 class="imH1">Sign up</h1>
+        </div>
+      </div>
+      <div nz-row nzJustify="center">
+        <form
+          nz-form
+          nz-col
+          nz-Offset="6"
+          nzSpan="12"
+          [formGroup]="signupForm"
+          (ngSubmit)="$event.preventDefault(); submit()"
+        >
+          <nz-form-item>
+            <nz-form-control  nzHasFeedback  nzErrorTip="The input is not a valid format">
+              <input
+                nz-input
+                placeholder="Email"
+                id="email"
+                formControlName="email"
+              />
+             
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="errorcp2">
+              <input
+                nz-input
+                placeholder="Password"
+                type="password"
+                id="password"
+                formControlName="password"
+              />
+              <ng-template #errorcp2 let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Password is required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('invalidLength')">Password must be at least 8 characters long <br/> </ng-container>
+                <ng-container *ngIf="control.hasError('missingUppercase')">Password must contain at least one uppercase letter <br/> </ng-container>
+                <ng-container *ngIf="control.hasError('missingLowercase')">Password must contain at least one lowercase letter <br/> </ng-container>
+                <ng-container *ngIf="control.hasError('missingNumber')">Password must contain at least one number <br/> </ng-container>
+                <ng-container *ngIf="control.hasError('missingSpecialChar')">Password must contain at least one special character <br/> </ng-container>
+              
+            </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="errorcp1">
+              <input
+                nz-input
+                placeholder="Confirm Password"
+                type="password"
+                id="password"
+                formControlName="confirmPassword"
+              />
+              <ng-template #errorcp1 let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                   Confirmation Password is required
+                </ng-container>
+                <ng-container *ngIf="control.hasError('confirm')">
+                    Two passwords that you enter is inconsistent!
+                </ng-container>     
+            </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="errorcp3">
+              <input
+                nz-input
+                placeholder="Name"
+                id="username"
+                formControlName="name"
+              />
+              <ng-template #errorcp3 let-control>
+                <!-- {{control.errors|json}} -->
+                <ng-container *ngIf="control.hasError('required')">
+                    Username is required
+                </ng-container>
+              
+            </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <button nz-button class="imButton" nzType="primary"  [disabled]="signupForm.invalid">Sign up</button>
+          Or <a routerLink="/login">login now!</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
