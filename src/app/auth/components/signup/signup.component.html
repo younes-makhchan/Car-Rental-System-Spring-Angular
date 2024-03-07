@@ -4,16 +4,14 @@
   <div class="parent">
     <div class="child">
       <div nz-row class="imDiv" nzJustify="center">
-        <div nz-col nzSpan="12" class="imDiv">
+        <div nz-col nzSpan="24" class="imDiv">
           <h1 class="imH1">Sign up</h1>
         </div>
       </div>
-      <div nz-row nzJustify="center">
+      <div  nzJustify="center">
         <form
           nz-form
-          nz-col
-          nz-Offset="6"
-          nzSpan="12"
+  
           [formGroup]="signupForm"
           (ngSubmit)="$event.preventDefault(); submit()"
         >
