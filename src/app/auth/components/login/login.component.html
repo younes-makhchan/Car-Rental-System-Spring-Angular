@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="inner-content">
+    <nz-spin [nzSpinning]="false" nzSimple> </nz-spin>
+  
+    <div class="parent">
+      <div class="child">
+        <div nz-row class="imDiv" nzJustify="center">
+          <div nz-col nzSpan="24" class="imDiv">
+            <h1 class="imH1">Log In</h1>
+          </div>
+        </div>
+        <div  nzJustify="center">
+          <form
+            nz-form
+            nz-col
+            nz-Offset="6"
+            nzSpan="24"
+            [formGroup]="loginForm"
+            (ngSubmit)="$event.preventDefault(); submit()"
+          >
+            <nz-form-item>
+              <nz-form-control  nzHasFeedback  nzErrorTip="The email is not a valid format">
+                <input
+                type="email"
+                  nz-input
+                  placeholder="Email"
+                  id="email"
+                  formControlName="email"
+                />
+               
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzHasFeedback [nzErrorTip]="errorcp2">
+                <input
+                  nz-input
+                  placeholder="Password"
+                  type="password"
+                  id="password"
+                  formControlName="password"
+                />
+                <ng-template #errorcp2 let-control>
+                  <ng-container *ngIf="control.hasError('required')">
+                      Password is required
+                  </ng-container>
+              </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+            <button nz-button class="imButton" nzType="primary"  [disabled]="loginForm.invalid">Log In</button>
+            Or <a routerLink="/register">Register now!</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

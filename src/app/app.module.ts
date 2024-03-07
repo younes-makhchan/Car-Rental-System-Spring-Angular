@@ -11,15 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 //NG zoro 
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import { NgzorroImportsModule } from './NgZorroImportsModule';
 
 registerLocaleData(en);
 
@@ -35,12 +30,8 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzLayoutModule,
-    NzSpinModule,
-    NzFormModule,
-    NzButtonModule,
-    NzInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgzorroImportsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
