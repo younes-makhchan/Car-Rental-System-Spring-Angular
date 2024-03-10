@@ -6,6 +6,7 @@ import com.projects.carrentalspringangular.entities.User;
 import com.projects.carrentalspringangular.enums.UserRole;
 import com.projects.carrentalspringangular.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +21,16 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
                 .name(signupRequest.getName())
                 .email(signupRequest.getEmail())
-                .password(signupRequest.getPassword())
+                .password(new BCryptPasswordEncoder().encode(signupRequest.getPassword()))
                 .userRole(UserRole.CUSTOMER)//you can use if statment to control it with a string
                 .build();
         User createdUser=userRepository.save(user);
         // i think better to return a success
         UserDto userDto =new UserDto();
         userDto.setId(createdUser.getId());
+        userDto.setName(createdUser.getName());
+        userDto.setEmail(createdUser.getEmail());
+        userDto.setUserRole(createdUser.getUserRole());
 
         return userDto;
     }
