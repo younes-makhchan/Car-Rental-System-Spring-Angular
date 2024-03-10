@@ -5,6 +5,7 @@ import com.projects.carrentalspringangular.dto.UserDto;
 import com.projects.carrentalspringangular.entities.User;
 import com.projects.carrentalspringangular.enums.UserRole;
 import com.projects.carrentalspringangular.repositories.UserRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,20 @@ public class AuthServiceImpl implements AuthService {
         return userDto;
     }
 
+    @PostConstruct
+    public  void createAdminAccount(){
+        User adminAccount=userRepository.findByUserRole(UserRole.ADMIN);
+        if(adminAccount==null){
+            User newAdminAccount=new User();
+            newAdminAccount.setName("Admin");
+            newAdminAccount.setEmail("Admin@test.com");
+            newAdminAccount.setPassword(new BCryptPasswordEncoder().encode("admin"));
+            newAdminAccount.setUserRole(UserRole.ADMIN);
+            userRepository.save(newAdminAccount);
+
+            System.out.println("Admin Account created ");
+        }
+    }
     @Override
     public boolean hasCustomerWithEmail(String email) {
         return userRepository.findFirstByEmail(email).isPresent();

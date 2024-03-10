@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface AuthService {
     UserDto createCustomer(SignupRequest signupRequest);
+    public  void createAdminAccount();
     boolean hasCustomerWithEmail(String email);
 }
