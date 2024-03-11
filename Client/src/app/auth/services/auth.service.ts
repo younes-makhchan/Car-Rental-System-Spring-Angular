@@ -13,4 +13,7 @@ export class AuthService {
   register(signUpRequest:any):Observable<any>{
     return this.http.post(`${BASE_URL}/api/auth/signup`,signUpRequest)
   }
+  login(loginRequest:any):Observable<any>{
+    return this.http.post(`${BASE_URL}/api/auth/login`,loginRequest)
+  }
 }
